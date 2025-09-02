@@ -40,7 +40,7 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 pip install genesis-world
 
 # Unitree H1モデルの取得
-git clone https://github.com/unitreerobotics/unitree_ros.git
+git submodule update --init --recursive
 
 # 環境チェック
 python 00_check_env.py

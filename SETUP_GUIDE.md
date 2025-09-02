@@ -52,8 +52,10 @@ pip install genesis-world
 
 ### 6. Unitree H1モデルの取得
 ```bash
-git clone https://github.com/unitreerobotics/unitree_ros.git
+git submodule update --init --recursive
 ```
+
+**注意**: unitree_rosはgit submoduleとして管理されています。初回クローン時は上記コマンドでsubmoduleを初期化してください。
 
 ### 7. 環境チェックの実行
 ```bash
