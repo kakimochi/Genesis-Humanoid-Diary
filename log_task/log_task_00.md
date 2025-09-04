@@ -28,3 +28,12 @@
 - 使用技術と開発ロードマップの明記
 - コントリビューション方法と関連リンクの提供
 - 包括的なプロジェクトドキュメントとして完成
+
+# 2025-09-02 18:39:00 unitree_ros submodule化完了
+- 既存のunitree_rosディレクトリを削除
+- git submoduleとしてunitree_rosを追加
+- .gitmodulesファイルの自動生成
+- SETUP_GUIDE.mdとREADME.mdの手順を更新
+- git submodule update --init --recursiveコマンドに変更
+- 環境チェック実行で全9項目成功を確認
+- プロジェクトの依存関係管理を改善
