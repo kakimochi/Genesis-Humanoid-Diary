@@ -50,12 +50,16 @@ pip install genesis-world
 
 **注意**: インストール中に依存関係の警告が表示される場合がありますが、仮想環境内での問題のため、基本的な動作には影響ありません。
 
-### 6. Unitree H1モデルの取得
+### 6. サブモジュールの取得
 ```bash
 git submodule update --init --recursive
 ```
 
-**注意**: unitree_rosはgit submoduleとして管理されています。初回クローン時は上記コマンドでsubmoduleを初期化してください。
+**注意**: 以下のリポジトリがgit submoduleとして管理されています：
+- `unitree_ros`: Unitree H1ロボットモデル
+- `genesis-samples`: Genesis公式サンプルコード
+
+初回クローン時は上記コマンドでsubmoduleを初期化してください。
 
 ### 7. 環境チェックの実行
 ```bash

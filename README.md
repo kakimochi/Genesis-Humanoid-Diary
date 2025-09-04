@@ -39,7 +39,7 @@ pip install --upgrade pip
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip install genesis-world
 
-# Unitree H1モデルの取得
+# サブモジュールの取得
 git submodule update --init --recursive
 
 # 環境チェック

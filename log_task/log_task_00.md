@@ -37,3 +37,10 @@
 - git submodule update --init --recursiveコマンドに変更
 - 環境チェック実行で全9項目成功を確認
 - プロジェクトの依存関係管理を改善
+
+# 2025-09-04 14:44:45 Genesis公式リポジトリ submodule追加完了
+- Genesis公式リポジトリ(https://github.com/Genesis-Embodied-AI/Genesis)をgenesis-samplesとしてsubmodule追加
+- サンプルコードアクセスのための環境整備完了
+- SETUP_GUIDE.mdのステップ6を両方のsubmoduleに対応するよう更新
+- README.mdの「Unitree H1モデルの取得」を「サブモジュールの取得」に変更
+- プロジェクトでGenesis公式サンプルコードの利用が可能に
