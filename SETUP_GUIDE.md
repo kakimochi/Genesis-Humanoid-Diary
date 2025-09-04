@@ -61,7 +61,12 @@ git submodule update --init --recursive
 
 初回クローン時は上記コマンドでsubmoduleを初期化してください。
 
-### 7. 環境チェックの実行
+### 7. 強化学習ライブラリのインストール
+```bash
+pip install rsl-rl-lib==2.2.4 tensorboard
+```
+
+### 8. 環境チェックの実行
 ```bash
 python 00_check_env.py
 ```
@@ -168,14 +173,74 @@ Genesis-Humanoid-Diary/
 └── README.md                       # プロジェクト概要
 ```
 
+## H1ヒューマノイド強化学習の使用方法
+
+環境構築が完了したら、以下の強化学習機能を使用できます：
+
+### 1. 学習環境のテスト
+```bash
+# 学習環境の動作確認（2環境、2イテレーション）
+python h1_train.py --exp_name test --num_envs 2 --max_iterations 2
+```
+
+### 2. 本格的な学習の実行
+```bash
+# ビューアー表示ありで学習実行
+python h1_train.py --exp_name h1-walking-full --num_envs 4096 --max_iterations 1000
+
+# ビューアー表示なしで学習実行（高速）
+python h1_train.py --exp_name h1-walking-fast --num_envs 4096 --max_iterations 1000 --no_viewer
+```
+
+### 3. 学習結果の評価
+```bash
+# 訓練済みモデルの評価（ビューアー表示あり）
+python h1_eval.py --exp_name h1-walking-full
+
+# ビューアー表示なしで評価
+python h1_eval.py --exp_name h1-walking-full --no_viewer
+```
+
+### 4. TensorBoardでの学習進捗確認
+```bash
+# TensorBoardの起動
+tensorboard --logdir logs/
+
+# ブラウザで http://localhost:6006 にアクセス
+```
+
+## 学習環境の仕様
+
+- **観測空間**: 39次元
+  - 角速度 (3次元)
+  - 重力ベクトル (3次元)
+  - コマンド (3次元)
+  - 関節位置 (10次元)
+  - 関節速度 (10次元)
+  - 前回のアクション (10次元)
+
+- **アクション空間**: 10次元（H1の脚関節）
+  - 左脚: hip_yaw, hip_roll, hip_pitch, knee, ankle
+  - 右脚: hip_yaw, hip_roll, hip_pitch, knee, ankle
+
+- **報酬関数**:
+  - 線形速度追跡
+  - 角速度追跡
+  - 垂直速度ペナルティ
+  - アクション変化率ペナルティ
+  - デフォルト姿勢維持
+  - 基準高度維持
+  - 直立姿勢維持
+  - 関節制限ペナルティ
+
 ## 次のステップ
 
 環境構築が完了したら、以下の開発を開始できます：
 
-1. **基本シミュレーション**: Genesisを使用したH1モデルの基本動作確認
-2. **強化学習環境**: 歩行学習のための環境設定
-3. **学習アルゴリズム**: PPO等の強化学習アルゴリズムの実装
-4. **評価・可視化**: 学習結果の評価と可視化
+1. **基本シミュレーション**: `python h1_train.py --exp_name test --num_envs 2 --max_iterations 2`
+2. **強化学習訓練**: `python h1_train.py --exp_name your-experiment`
+3. **学習結果評価**: `python h1_eval.py --exp_name your-experiment`
+4. **進捗可視化**: `tensorboard --logdir logs/`
 
 ## 参考リンク
 
